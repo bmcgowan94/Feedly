@@ -1,0 +1,87 @@
+
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>Your Feed</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only clear (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-row margin class="rowStyle">
+      <button ion-button icon-only color="danger" clear (click)="addPhoto()">
+          <ion-icon name="images"></ion-icon>
+      </button>
+
+      <ion-input type="text" placeholder="Say something..." [(ngModel)]="text"></ion-input>
+
+      <button ion-button icon-only color="danger" clear (click)="post()">
+          <ion-icon name="send"></ion-icon>
+      </button>
+  </ion-row>
+
+  <!-- display this row if there is an image uploaded -->
+  <ion-row margin class="rowStyle" *ngIf="image">
+    <ion-card class="round-corners">
+      <img [src]="image" class="round-corners">
+    </ion-card>
+  </ion-row>
+
+
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- POSTS START HERE -->
+  <ion-card *ngFor="let post of posts">
+
+    <ion-item-divider color="danger">
+      {{ post.data().owner_name }} says...
+    </ion-item-divider>
+
+    <ion-item text-wrap>
+        {{ post.data().text }}
+    </ion-item>
+
+    <!-- only display an image with the posts if one exists -->
+    <img [src]="post.data().image" *ngIf="post.data().image">
+
+    <ion-row class="bottom-bar">
+      <ion-col>
+        <button ion-button block icon-left clear small color="danger" class="border-right" (click)="like(post)">
+           <ion-icon name="thumbs-up"></ion-icon>
+            <small>{{ post.data().likesCount || 0 }} likes</small>
+        </button>
+      </ion-col>
+      
+      <ion-col>
+          <button ion-button block icon-left clear small color="danger" class="border-right" (click)="comment(post)">
+              <ion-icon name="text"></ion-icon>
+              <small>{{ post.data().commentsCount || 0 }} comments</small>
+           </button>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button block icon-left clear small color="danger">
+            <small>{{ ago(post.data().created.toDate()) }} ago</small>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
