@@ -32,8 +32,8 @@ export class FeedPage
               private loadingCtrl: LoadingController, 
               private toastCtrl: ToastController, 
               private camera: Camera, 
-              //private http: HttpClient, 
-              private http: HTTP,
+              private http: HttpClient, 
+              //private http: HTTP,
               private actionSheetCtrl: ActionSheetController, 
               private alertCtrl: AlertController, 
               private modalCtrl: ModalController) 
