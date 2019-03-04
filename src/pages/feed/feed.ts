@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http';
 
 import { CommentsPage } from '../comments/comments';
+import { Firebase } from '@ionic-native/firebase/ngx';
 
 @Component({
   selector: 'page-feed',
@@ -36,12 +37,39 @@ export class FeedPage
               //private http: HTTP,
               private actionSheetCtrl: ActionSheetController, 
               private alertCtrl: AlertController, 
-              private modalCtrl: ModalController) 
+              private modalCtrl: ModalController, 
+              private firebaseCordova: Firebase) 
   {
     // get all posts as soon as page loads
     this.getPosts();
+
+    // get the users token to send push notifications
+    this.firebaseCordova.getToken().then((token) => {
+      console.log(token)
+
+      this.updateToken(token, firebase.auth().currentUser.uid);
+
+    }).catch((err) => {
+      console.log(err);
+    })
   }
 
+  // This function saves the users token into firebase 
+  updateToken(token: string, uid: string)
+  {
+    firebase.firestore().collection("users").doc(uid).set({
+      token: token, 
+      tokenUpdate: firebase.firestore.FieldValue.serverTimestamp()
+    }, {
+      // 'merge' ensures anything in the users document doesnt get overwritten, just merged
+      merge: true
+    }).then(() => {
+      console.log("Token saved to cloud firestore!");
+    }).catch((err) => {
+      console.log(err);
+    })
+
+  }
 
 
   // This function is used to grab all posts to be displayed from firestore 
