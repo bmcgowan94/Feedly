@@ -14,7 +14,7 @@ import { FeedPage } from '../pages/feed/feed';
 import { CommentsPage } from '../pages/comments/comments';
 
 import { Camera } from '@ionic-native/camera';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { Firebase } from '@ionic-native/firebase';
 
 import firebase from 'firebase';
 

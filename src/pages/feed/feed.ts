@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http';
 
 import { CommentsPage } from '../comments/comments';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { Firebase } from '@ionic-native/firebase';
 
 @Component({
   selector: 'page-feed',

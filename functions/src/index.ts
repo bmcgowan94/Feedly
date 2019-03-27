@@ -11,17 +11,6 @@ admin.initializeApp(functions.config().firebase);
 
 export const updateLikesCount = functions.https.onRequest((request, response) => {
 
-  // this block of code eliminates any HTTP request errors I was having, ignore it
-  let body: any;
-  if(typeof(request.body) == "string")
-  {
-    body = JSON.parse(request.body)
-  }
-  else
-  {
-    body = request.body;
-  }
-
   console.log(request.body);
 
   const postId = JSON.parse(request.body).postId;
