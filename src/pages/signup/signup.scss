@@ -4,13 +4,20 @@ page-signup {
         ion-content {
             .scroll-content
             {
-                background-color: map-get($colors, danger )
+                background-color: map-get($colors, tatYou_secondary )
             }
+
+            .title
+            {
+                color: map-get($colors, tatYou_primary );
+                padding-top: 10px;
+            }
+
         }
     
         .item
         {
-            background-color: map-get($colors, danger )
+            background-color: map-get($colors, tatYou_secondary )
         }
     
         .logo
@@ -37,6 +44,7 @@ page-signup {
             {
                 margin-top: 13px;
                 margin-right: 10px;
+                color: map-get($colors, tatYou_primary );
             }
         }
     
