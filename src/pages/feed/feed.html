@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar color="tatYou_primary">
-    <ion-title>Your Feed</ion-title>
+    <ion-title>Request Feed</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only clear (click)="logout()">
@@ -18,13 +18,13 @@
 <ion-content class="tatYou_secondary">
 
   <ion-row margin class="rowStyle">
-      <button ion-button icon-only color="dark_sea_green" clear (click)="addPhoto()">
+      <button ion-button icon-only color="tatYou_primary" clear (click)="addPhoto()">
           <ion-icon name="images"></ion-icon>
       </button>
 
-      <ion-input type="text" placeholder="Say something..." [(ngModel)]="text"></ion-input>
+      <ion-input type="text" placeholder="Request a design..." color="tatYou_primary" [(ngModel)]="text"></ion-input>
 
-      <button ion-button icon-only color="dark_sea_green" clear (click)="post()">
+      <button ion-button icon-only color="tatYou_primary" clear (click)="post()">
           <ion-icon name="send"></ion-icon>
       </button>
   </ion-row>
@@ -42,9 +42,9 @@
   </ion-refresher>
 
   <!-- POSTS START HERE -->
-  <ion-card *ngFor="let post of posts">
+  <ion-card *ngFor="let post of posts" style="margin-bottom:20px">
 
-    <ion-item-divider color="onyx">
+    <ion-item-divider color="tatYou_primary">
       {{ post.data().owner_name }} says...
     </ion-item-divider>
 
@@ -57,21 +57,21 @@
 
     <ion-row class="bottom-bar">
       <ion-col>
-        <button ion-button block icon-left clear small color="dark_sea_green" class="border-right" (click)="like(post)">
+        <button ion-button block icon-left clear small color="tatYou_primary" class="border-right" (click)="like(post)">
            <ion-icon name="thumbs-up"></ion-icon>
             <small>{{ post.data().likesCount || 0 }} likes</small>
         </button>
       </ion-col>
       
       <ion-col>
-          <button ion-button block icon-left clear small color="dark_sea_green" class="border-right" (click)="comment(post)">
+          <button ion-button block icon-left clear small color="tatYou_primary" class="border-right" (click)="comment(post)">
               <ion-icon name="text"></ion-icon>
               <small>{{ post.data().commentsCount || 0 }} comments</small>
            </button>
       </ion-col>
 
       <ion-col>
-        <button ion-button block icon-left clear small color="dark_sea_green">
+        <button ion-button block icon-left clear small color="tatYou_primary">
             <small>{{ ago(post.data().created.toDate()) }} ago</small>
         </button>
       </ion-col>

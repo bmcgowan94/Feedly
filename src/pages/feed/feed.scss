@@ -2,7 +2,7 @@ page-feed {
 
     .rowStyle
     {
-        border: solid map-get($colors, dark_sea_green) 1px;
+        border: solid map-get($colors, tatYou_primary) 1px;
         border-radius: 30px;
         margin-top: 10px;
 
@@ -28,5 +28,10 @@ page-feed {
     .tatYou_secondary
     {
         background-color: #E6E6FA
+    }
+
+    .ion-card
+    {
+        padding-top: 50px;
     }
 }
